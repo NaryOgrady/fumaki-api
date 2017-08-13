@@ -1,4 +1,6 @@
-env/
+.env/
 .vscode/
 .vagrant/
 **/*.log
+/__pycache__/
+**/*.pyc
