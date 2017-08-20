@@ -1,0 +1,12 @@
+[Unit]
+Description=uWSGI instance to serve fumaki
+After=network.target
+
+[Service]
+Group=www-data
+WorkingDirectory=/vagrant/src
+ExecStart=/usr/local/bin/uwsgi --ini fumaki.ini
+
+[Install]
+WantedBy=multi-user.target
+Alias=fumaki.service
