@@ -1,0 +1,16 @@
+[Unit]
+Description=uWSGI instance to serve fumaki
+After=network.target
+
+[Service]
+Group=www-data
+WorkingDirectory=/vagrant/src
+Environment=LC_ALL=C.UTF-8
+Environment=LANG=C.UTF-8
+Environment=FLASK_DEBUG=1
+Environment=FLASK_APP=main.py
+ExecStart=/usr/local/bin/flask run --host=0.0.0.0
+
+[Install]
+WantedBy=multi-user.target
+Alias=fumaki.service
