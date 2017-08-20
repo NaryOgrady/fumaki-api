@@ -1,0 +1,15 @@
+{
+  "name": "dev",
+  "description": "Development config for vagrant box",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[fumaki-api::setup]",
+    "recipe[fumaki-api::flask]",
+    "recipe[fumaki-api::dev-deploy]"
+  ]
+}
