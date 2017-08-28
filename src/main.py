@@ -10,5 +10,10 @@ app = Flask(__name__)
 def hello_world():
     data = service.get_random_actors(3)
     schema = ActorSchema()
-    result = schema.dump(data[0]).data
-    return jsonify({'actor': result})
+    actors = []
+    
+    for actor in data:
+        result = schema.dump(actor).data
+        actors.append(result)
+
+    return jsonify({'actors': actors})
