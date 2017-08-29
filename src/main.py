@@ -1,19 +1,16 @@
 from flask import Flask, jsonify
 
-from models.actor import Actor
+from routes import *
 from service import actor_service as service
+from helpers import json_helper as json
 from schemas.actor_schema import ActorSchema
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    data = service.get_random_actors(3)
+@app.route(RANDOM_ACTORS)
+def hello_world(quantity):
+    actors_data = service.get_random_actors(quantity)
     schema = ActorSchema()
-    actors = []
-    
-    for actor in data:
-        result = schema.dump(actor).data
-        actors.append(result)
+    json_data = json.serialize_query_list(actors_data, schema)
 
-    return jsonify({'actors': actors})
+    return jsonify({'actors': json_data})
